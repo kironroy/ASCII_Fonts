@@ -11,6 +11,7 @@ namespace AdventureGame2
     {
         static void Main()
         {
+            OpeningScene.ArtTitle();
             Game.Play();
         }
     }

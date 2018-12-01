@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using System.Collections.Generic;
 
 namespace AdventureGame2
 {
@@ -11,18 +9,17 @@ namespace AdventureGame2
         static string input;
         static bool goal = false;
 
-        public static void Start()
+        private static void Start()
         {
             Console.Clear();
-            Console.WriteLine("Adventure Game");
-
-            Console.WriteLine("introductory text to outline a goal");
-            Console.WriteLine("press enter to continue");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            CenterText.centerText("ASCII fonts Intro");
+            CenterText.centerText("press enter to continue");
             Console.ReadKey();
 
         }
 
-        public static void End()
+        private static void End()
         {
             if (goal)
             {
@@ -33,12 +30,12 @@ namespace AdventureGame2
             }
             else
             {
-                Console.WriteLine("Try again!");
-
-                Console.WriteLine("Press enter to continue...");
-                Console.ReadLine();
-                run = true;
-                Play();
+                EndScene.EndTitleBlue();
+                EndScene.EndTitleYellow();
+                EndScene.EndTitleRed();
+                Environment.Exit(0); // exit the game
+                
+             
             }
 
         }
@@ -54,11 +51,12 @@ namespace AdventureGame2
 
         }
 
-        public static void Menu()
+        private static void Menu()
         {
             Console.Clear();
-            Console.WriteLine("1) A 2) B 3) C 4) D 5) Exit");
-            choice = Convert.ToInt32(Console.ReadLine());
+            CenterText.centerText("press 1. Big Money 2. Doh 3. Isometric 4. Slant 5. Exit");
+            string pressEnterCont = "Press enter to continue";
+            choice = Convert.ToInt32(Console.ReadLine().Trim());
             if (choice == 5)
             {
                 run = false;
@@ -68,43 +66,49 @@ namespace AdventureGame2
                 switch (choice)
                 {
                     case 1:
-                        Console.WriteLine("A content...");
-                        //content here....
-                        Console.WriteLine("Press enter to continue...");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        ASCIIFonts.BigMoney();
+                        Console.WriteLine();
+                        CenterText.centerText(pressEnterCont);
                         Console.ReadLine();
                         break;
 
                     case 2:
-                        Console.WriteLine("B content...");
-                        //content here....
-                        Console.WriteLine("Press enter to continue...");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        ASCIIFonts.Doh();
+                        CenterText.centerText(pressEnterCont);
                         Console.ReadLine();
                         break;
 
                     case 3:
-                        Console.WriteLine("C content...");
-                        //content here....
-                        Console.WriteLine("Press enter to continue...");
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        ASCIIFonts.Isometric();
+                        CenterText.centerText(pressEnterCont);
                         Console.ReadLine();
                         break;
 
                     case 4:
-                        Console.WriteLine("D content...");
-                        //content here....
-                        Console.WriteLine("Press enter to continue...");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        ASCIIFonts.SlantandRelief();
+                       
+                        CenterText.centerText(pressEnterCont);
                         Console.ReadLine();
+                        break;
+                    case 5:
+                        Environment.Exit(0);
                         break;
                     default:
                         input = Console.ReadLine();
                         if (int.TryParse(input, out choice))
                         {
-                            if (choice >= 5)
+                            if (choice > 5)
                             {
                                 run = false;
+                                
                             }
                             else
                             {
-                                //switch statement here
+                              
                             }
                         }
                         else
